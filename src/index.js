@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './Component/App';
+import "./Component/Reset.css";
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
