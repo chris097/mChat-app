@@ -1,51 +1,44 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React from 'react';  
-import {BrowserRouter as Router, Link} from 'react-router-dom';
 // import { LoginUser } from "./Login";
 import mock from '../images/chat-group.jpg';
 import chatIcon from "../images/20488998.jpg";
-
-
-export const Header = () => {
-    
-    // const [getStarted, setGetStarted] = useState('')
-
-    return(
-        <div className="bg-white shadow h-20 py-3 z-50">
-           <div className="px-10 flex z-40">
-                <div className="text-2xl italic text-black-100">
-                    <span><svg className="w-14 inline text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                    </svg></span> 
-                     mChat
-                </div>
-
-                <div className="flex-1 ml-20">
-                    <ul className="flex mt-4">
-                       <li><a className="text-gray-400 hover:text-gray-700" href="/">About</a></li>
-                       <li className="ml-10 text-gray-400 hover:text-gray-700" ><a href="/">How it works</a></li>
-                       <li className="ml-10 text-gray-400 hover:text-gray-700"><a href="/">Contact</a></li>
-                       <li className="ml-10 text-gray-400 hover:text-gray-700" ><a href="/">Team</a></li>
-                    </ul>
-                </div>
-
-                <Router>
-                <div className="py-3">
-                    <Link to="./Login.js">
-                    <button type="submit" className="bg-red-500 rounded-full px-5 py-2 hover:bg-red-600 text-white ease-in-out">Get Started</button>
-                    </Link>
-                </div>
-                </Router>
-            </div>
-        </div>
-    )
-}
+import { Link } from 'react-router-dom';
 
 
 export const Home = () => {
     return(
         <>
-            <Header />
+        <div className="bg-white shadow h-20 py-3 z-50">
+        <div className="px-10 flex z-40">
+             <div className="text-2xl italic text-black-100">
+                 <span><svg className="w-14 inline text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                 </svg></span> 
+                  mChat
+             </div>
+
+             <div className="flex-1 ml-20">
+                 <ul className="flex mt-4">
+                    <li><a className="text-gray-400 hover:text-gray-700" href="/">About</a></li>
+                    <li className="ml-10 text-gray-400 hover:text-gray-700" ><a href="/">How it works</a></li>
+                    <li className="ml-10 text-gray-400 hover:text-gray-700"><a href="/">Contact</a></li>
+                    <li className="ml-10 text-gray-400 hover:text-gray-700" ><a href="/">Team</a></li>
+                 </ul>
+             </div>
+           
+          
+             
+                 <div className="py-3">
+                    <Link to="/src/Components/Pages/Login">
+                        <button type="submit" className="bg-red-500 rounded-full px-5 py-2 hover:bg-red-600 text-white ease-in-out">Get Started</button>
+                    </Link>
+                 </div>
+            
+ 
+
+         </div>
+     </div>
 
             <div className="px-10 flex z-10 p-1">
                 <div className="w-2/6 mt-40">

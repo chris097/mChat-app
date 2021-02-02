@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const UserSignUp = () => {
     return(
@@ -12,19 +13,16 @@ export const UserSignUp = () => {
             </div>
             <p className="pt-8">Login to mchat world</p>
             <div className="w-96 my-5">
-                <button type="submit" className="w-1/2 text-center bg-green-400 p-1 text-white rounded-l"><span><svg className="w-8 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <button type="submit" className="w-full text-center bg-green-400 p-1 text-white rounded"><span><svg className="w-8 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0-1.537-.586-3.07-1.757-4.243zM12 10a2 2 0 10-4 0 2 2 0 004 0z" clipRule="evenodd" />
             </svg></span> Google</button>
-                <button type="submit" className="w-1/2 text-center bg-gray-800 p-1 text-white rounded-r"><span><svg className="w-8 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0-1.537-.586-3.07-1.757-4.243zM12 10a2 2 0 10-4 0 2 2 0 004 0z" clipRule="evenodd" />
-            </svg></span> GitHub</button>
             </div>
             <h1 className="text-center">OR</h1>
             <div className="w-96 border-gray-200 border-solid border-2 rounded-md p-2 mt-3"><input className="w-full outline-none" type="text" placeholder="Full Name"/></div>
             <div className="w-96 border-gray-200 border-solid border-2 rounded-md p-2 mt-3"><input className="w-full outline-none" type="text" placeholder="Email"/></div>
             <div className="w-96 border-gray-200 border-solid border-2 rounded-md p-2 mt-3"><input className="w-full outline-none" type="password" name="password" id="password" placeholder="Password"/></div>
             <div className="w-96 bg-red-400 p-2 mt-3 rounded-md text-center text-white outline-none"><button className="w-full outline-none" type="submit">Sign Up</button></div>
-            <div>Already registered <span className="text-red-300 cursor-pointer">click here</span></div>
+            <div className="pt-2">Already registered <Link to="/src/Components/Pages/Login"><span className="text-red-300 cursor-pointer">click here</span></Link> </div>
         </div>
         </>
     )
