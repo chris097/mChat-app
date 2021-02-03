@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.card{
+    @apply shadow-2xl bg-white w-72 h-auto text-center;
+}
+
+.banner{
+    @apply flex z-10 p-1;
+}
+
+.team-card{
+    @apply w-72 h-72 shadow-2xl bg-white m-auto;
+}

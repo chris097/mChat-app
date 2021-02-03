@@ -1,7 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import userPix from "../images/chat-group.jpg";
 
-export const UserChatPage = () => {
+
+export const UserChatPage = ({ user = null, db = null }) => {
+
+    const [ messages, setMessages ] = useState([])
+
+    const signOut = async () => {
+        try{
+            await firebase.auth().signOut();
+        }catch (error){
+            console.log(error.message)
+        }
+    }
+
+    useEffect(() => {
+        if(db){
+            const unsubscribe = db
+            .collection('messages')
+            .orderBy('createAt')
+            .limit(100)
+            .onSnapshot(querySnapshot => {
+                // Get all documents from collections - with IDs
+                const data = querySnapshot.docs.map(doc => ({
+                    ...doc.data(),
+                    id: doc.id,
+                }))
+                // Update state
+                setMessages(data)
+            })
+            // Detect listener
+            return unsubscribe;
+        } 
+    }, [db])
+
+
     return(
         <>
             <div className="flex h-full">
@@ -24,11 +59,11 @@ export const UserChatPage = () => {
                         </div>                    
                    </div>
 
-                   <div className="fixed bottom-1 ml-2 text-gray-500 hover:text-gray-800">
+                   <button onClick={signOut} className="fixed bottom-1 ml-2 text-gray-500 hover:text-gray-800">
                         <svg className="w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                       </svg>
-                   </div>
+                   </button>
                 </div>
 
                 <div className="w-full ml-80 relative h-96">
@@ -52,11 +87,10 @@ export const UserChatPage = () => {
                         <div className="p-2 self-start absolute w-w flex">
                             <img className="w-10 h-10 rounded-full" src={userPix} alt=""/>
                             <div className="py-4">
-                                <div className="bg-gray-100 rounded-tl-3xl rounded-r-md p-2">
-                                    Yeah i think is best we do that. 
-                                    Otherwise things won't work out well. 
-                                    I am adding more text here to check the sizing to the 
-                                    speech bubbles and wrapping it also.
+                                <div className="bg-gray-100 rounded-tl-3xl rounded-r-md p-2 w-2/4">
+                                   { messages.map(message => ( 
+                                        {message}
+                                   ))}
                                 </div>
                                 <div className="text-xs text-left text-gray-400">Apr 21</div>
                             </div>
