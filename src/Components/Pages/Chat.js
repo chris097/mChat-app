@@ -4,12 +4,12 @@ import 'firebase/auth';
 import userPix from "../images/chat-group.jpg";
 
 
-export const UserChatPage = ({ user = null, db = null }) => {
+export const UserChatPage = ({ u = null, db = null }) => {
 
     const [ messages, setMessages ] = useState([])
     const [ newMessage, setNewMessage ] = useState('')
 
-    const [ uid, displayName, photoUrl ] = user;
+    const [ uid, displayName, photoUrl ] = u;
 
     const signOut = async () => {
         try{
