@@ -7,6 +7,9 @@ import userPix from "../images/chat-group.jpg";
 export const UserChatPage = ({ user = null, db = null }) => {
 
     const [ messages, setMessages ] = useState([])
+    const [ newMessage, setNewMessage ] = useState('')
+
+    const [ uid, displayName, photoUrl ] = user;
 
     const signOut = async () => {
         try{
@@ -17,25 +20,41 @@ export const UserChatPage = ({ user = null, db = null }) => {
     }
 
     useEffect(() => {
-        if(db){
-            const unsubscribe = db
-            .collection('messages')
-            .orderBy('createAt')
-            .limit(100)
-            .onSnapshot(querySnapshot => {
-                // Get all documents from collections - with IDs
+        if(db) {
+            const unsubscribe = db.collection('messages').orderBy('createdAt').limit(100).onSnapshot(querySnapshot => {
+                // Get all document from collection - with IDs
                 const data = querySnapshot.docs.map(doc => ({
                     ...doc.data(),
-                    id: doc.id,
-                }))
-                // Update state
+                    id: doc.id
+                }));
+                //Update state
                 setMessages(data)
             })
-            // Detect listener
+
             return unsubscribe;
-        } 
+        }
+
     }, [db])
 
+    
+    const handleOnChange = e => {
+        setNewMessage(e.target.value);
+    }
+
+    const handleOnSubmit = e => {
+        e.preventDefault()
+
+        if(db) {
+            db.collection('messages').add({
+                text: newMessage,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                uid,
+                displayName,
+                photoUrl
+            })
+
+        }
+    }
 
     return(
         <>
@@ -83,14 +102,14 @@ export const UserChatPage = ({ user = null, db = null }) => {
                                 <div className="text-right text-xs text-gray-400">Apr 20</div>
                             </div>
                         </div>
-
+                        { messages.map(msg => ( 
+                            <li key={msg.id}>{msg.text}</li>
+                       ))}
                         <div className="p-2 self-start absolute w-w flex">
                             <img className="w-10 h-10 rounded-full" src={userPix} alt=""/>
                             <div className="py-4">
                                 <div className="bg-gray-100 rounded-tl-3xl rounded-r-md p-2 w-2/4">
-                                   { messages.map(message => ( 
-                                        {message}
-                                   ))}
+                                   {messages}
                                 </div>
                                 <div className="text-xs text-left text-gray-400">Apr 21</div>
                             </div>
@@ -101,8 +120,10 @@ export const UserChatPage = ({ user = null, db = null }) => {
                         <span><svg className="w-6 text-gray-400 inline mx-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                         </svg></span>
-                        <input className="border border-gray-400 w-2/3 p-2 rounded" type="text" name="" id="" placeholder="Type a message"/>
-                        <button className="bg-red-400 ml-1 p-2 rounded text-white" type="submit">Send</button>
+                        <form onSubmit={handleOnSubmit}>
+                            <input className="border border-gray-400 w-2/3 p-2 rounded" type="text" name="" id="" placeholder="Type a message"/>
+                            <button value={newMessage} onChange={handleOnChange} className="bg-red-400 ml-1 p-2 rounded text-white" type="submit" disabled={!newMessage}>Send</button>
+                        </form>
                     </div>
                 </div>
             </div>
