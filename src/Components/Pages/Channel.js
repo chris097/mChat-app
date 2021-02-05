@@ -47,7 +47,6 @@ const Channel = ({ user = null, db = null, signOut }) => {
         }
     }
 
-
     return (
         <>
         <div className="bg-gray-800 h-screen text-gray-300">
@@ -75,14 +74,14 @@ const Channel = ({ user = null, db = null, signOut }) => {
                     </li>
                 ))}
             </ul>
-            <form onSubmit={handleOnSubmit}>
+            <form onSubmit={handleOnSubmit} className="bg-gray-600 absolute bottom-0 w-full p-3">
             <input
-            className="border border-gray-500" 
+                className="bg-transparent w-5/6 mx-3 outline-none p-2" 
                 type="text"
                 value={newMessage}
                 onChange={handleOnChange}
             />
-            <button type="submit" disabled={!newMessage}>Send</button>
+            <button className="p-2 px-6" type="submit" disabled={!newMessage}>Send</button>
             </form>
         </div>
         </>
