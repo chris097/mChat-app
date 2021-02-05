@@ -31285,30 +31285,28 @@ video {
   animation: bounce 1s infinite;
 }
 
-.card{
+.google-card{
   --tw-bg-opacity: 1;
-  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
-  height: auto;
-  --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
+  border-radius: 0.25rem;
+  height: 14rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  position: absolute;
+  left: 2.5rem;
+  top: 50%;
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   text-align: center;
-  width: 18rem;
+  --tw-text-opacity: 1;
+  color: rgba(209, 213, 219, var(--tw-text-opacity));
+  width: 50%;
 }
 
-.banner{
-  display: flex;
-  padding: 0.25rem;
-  z-index: 10;
-}
-
-.team-card{
-  --tw-bg-opacity: 1;
-  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
-  height: 18rem;
-  margin: auto;
-  --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  width: 18rem;
+@media (min-width: 640px) {
+  .google-card {
+    width: 66.666667%;
+  }
 }
 
 @media (min-width: 640px) {
@@ -184800,3 +184798,4 @@ video {
     animation: bounce 1s infinite;
   }
 }
+

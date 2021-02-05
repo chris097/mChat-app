@@ -2,14 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.card{
-    @apply shadow-2xl bg-white w-72 h-auto text-center;
+.google-card{
+    @apply bg-gray-700 w-1/2 absolute top-1/2 left-10 shadow rounded h-56 text-center text-gray-300 py-5 sm:w-2/3;
 }
 
-.banner{
-    @apply flex z-10 p-1;
-}
-
-.team-card{
-    @apply w-72 h-72 shadow-2xl bg-white m-auto;
-}

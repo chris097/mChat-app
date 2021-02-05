@@ -4,6 +4,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import Channel from './Pages/Channel'
+import Home from './Pages/Home';
 
 
 firebase.initializeApp({
@@ -69,12 +70,9 @@ export const App = () => {
         <div>
             {
                 user ? 
-                <>
-                <button className="bg-red-300 p-2" onClick={signOut}>Sign Out</button>
-                <Channel user={user} db={db} />
-                </> 
-                : 
-                <button className="bg-red-300" onClick={signInWithGoogle}>sigin with google</button>}
+                <div>
+                <Channel user={user} db={db} signOut={signOut} />
+                </div> : <Home signInWithGoogle={signInWithGoogle} />}
         </div>
     )
 
