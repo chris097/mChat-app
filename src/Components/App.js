@@ -5,6 +5,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import Channel from './Pages/Channel'
 import Home from './Pages/Home';
+import { Spin } from "./Spinner";
 
 
 firebase.initializeApp({
@@ -64,7 +65,7 @@ export const App = () => {
         }
     }
 
-    if (initializing) return 'loading ...';
+    if (initializing) return <Spin />;
 
     return(
         <div>
@@ -72,7 +73,8 @@ export const App = () => {
                 user ? 
                 <div>
                 <Channel user={user} db={db} signOut={signOut} />
-                </div> : <Home signInWithGoogle={signInWithGoogle} />}
+                </div> : <Home signInWithGoogle={signInWithGoogle} />
+            }
         </div>
     )
 
