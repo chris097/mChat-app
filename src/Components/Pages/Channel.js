@@ -55,7 +55,7 @@ const Channel = ({
 
     return (
         <>
-        <div className="dark:bg-gray-800 h-screen dark:text-gray-300 text-gray-600 bg-gray-100 transition duration-500">
+        <div className="dark:bg-gray-800 h-screen dark:text-gray-300 text-gray-600 bg-gray-100 transition duration-500 fixed w-screen">
 
             <div className="px-10 flex justify-between pt-3 border-b-gray-400 border-b">
                     <div>
@@ -81,14 +81,14 @@ const Channel = ({
                         </span>
                     </div>
             </div>
-            <ul>
+            <ul className="bg-scroll w-full h-4/5 overflow-auto flex flex-col-reverse pb-10">
                 {messages.map(message => (
                     <li key={message.id}>
                     <Message {...message} />
                     </li>
                 ))}
             </ul>
-            <form onSubmit={handleOnSubmit} className="dark:bg-gray-600 absolute bottom-0 w-full p-3 border-t border-gray-200">
+            <form onSubmit={handleOnSubmit} className="dark:bg-gray-600 absolute bottom-0 w-full p-3 border-t border-gray-200 z-40 bg-gray-100">
             <input
                 className="bg-transparent w-5/6 mx-3 outline-none p-2" 
                 type="text"
