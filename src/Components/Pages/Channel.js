@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
+import "firebase/auth";
 import Message from './Message';
 import useDarkMode from '../../hooks/useDarkMode';
+
+const auth = firebase.auth();
 
 const Channel = ({ 
     user = null, 
@@ -13,6 +16,8 @@ const Channel = ({
     const [colortheme, setColorTheme] = useDarkMode();
 
     let  {uid,  displayName, photoURL}  = user;
+
+    const messageStatus = uid === auth.currentUser.uid ? 'sent' : 'received';
 
     useEffect(() => {
         if(db) {
@@ -57,7 +62,7 @@ const Channel = ({
         <>
         <div className="dark:bg-gray-800 h-screen dark:text-gray-300 text-gray-600 bg-gray-100 transition duration-500 fixed w-screen">
 
-            <div className="px-10 flex justify-between pt-3 border-b-gray-400 border-b">
+            <div className="px-10 flex justify-between pt-3 border-b-gray-400 border-b xsm:px-5">
                     <div>
                         <svg className="w-12 text-center m-auto inline text-red-500 mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -85,17 +90,18 @@ const Channel = ({
                 {messages.map(message => (
                     <li key={message.id}>
                     <Message {...message} />
+                    <div className="dark:text-gray-50 text-right mr-5 -mt-4 text-xs">{messageStatus}</div>
                     </li>
                 ))}
             </ul>
             <form onSubmit={handleOnSubmit} className="dark:bg-gray-600 absolute bottom-0 w-full p-3 border-t border-gray-200 z-40 bg-gray-100">
             <input
-                className="bg-transparent w-5/6 mx-3 outline-none p-2" 
+                className="bg-transparent w-5/6 mx-3 outline-none p-2 xsm:w-2/4" 
                 type="text"
                 value={newMessage}
                 onChange={handleOnChange}
             />
-            <button className="p-2 px-6" type="submit" disabled={!newMessage}>Send</button>
+            <button className="p-2 px-6 xsm:ml-6" type="submit" disabled={!newMessage}>Send</button>
             </form>
         </div>
         </>

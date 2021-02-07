@@ -20,7 +20,7 @@ const Message = ({
                 <div className="flex">
                 {displayName ? <p className="text-red-900 text-lg ml-0">{displayName}</p> : null}
                 {createdAt?.seconds ? (
-                    <span className="text-xs mt-2 ml-3">
+                    <span className="text-xs mt-2 ml-2">
                         {formatRelative(new Date(createdAt.seconds * 1000), new Date()
                         )}
                     </span>
